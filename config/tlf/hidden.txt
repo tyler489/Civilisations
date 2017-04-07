@@ -1,0 +1,2 @@
+#List of Hidden Players
+johnfg10:false
