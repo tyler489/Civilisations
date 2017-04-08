@@ -1,5 +1,5 @@
 println """
-        Building SirusAI!!!
+        Building Civilizations!!!
 """
 
 import org.apache.tools.ant.filters.ReplaceTokens
@@ -117,10 +117,6 @@ task compileCurse1(type: Copy) {
     into "$buildSources"
 }
 
-
-
-
-
 task compileMultiMC(type: Copy) {
     doFirst {
         delete("$buildSources/MultiMC/minecraft")
@@ -148,8 +144,7 @@ task compileMultiMC(type: Copy) {
     includeEmptyDirs = false
 }
 
-
-	task compileMultiMC1(type: Copy) {
+task compileMultiMC1(type: Copy) {
     from('Misc') {
 		include '**/MultiMC/patches/**'
 		include '**/MultiMC/.packignore.**'
@@ -157,11 +152,6 @@ task compileMultiMC(type: Copy) {
     }
     into "$buildSources"
 }
-
-
-
-
-
 
 task buildServer(type: Zip, dependsOn: ['compileServer']) {
     from "$buildSources/server"
