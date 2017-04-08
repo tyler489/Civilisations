@@ -1,4 +1,4 @@
-title Galactic Science Server
+title Civilizations Server
 
 if NOT "%FTB_VERBOSE%"=="yes" (
     @echo off
