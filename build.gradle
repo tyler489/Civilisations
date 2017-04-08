@@ -1,0 +1,184 @@
+println """
+        Building SirusAI!!!
+"""
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+version = packVersion
+description = packDescription
+def forgeCompatibility = packForgeCompatibility
+
+ext {
+    buildSources = "$buildDir/sources"
+}
+
+task buildAll(dependsOn: ['buildServer', 'buildClient', 'buildCurse', 'buildMultiMC'])
+
+task compileServer(type: Copy) {
+    doFirst {
+        delete("$buildSources/server")
+    }
+    from('src') {
+        exclude '**/_CLIENT/**'
+    }
+    from('src') {
+        include '**/*.properties'
+        include '**/*.txt'
+        include '**/*.json'
+        include '**/*.cfg'
+        include '**/*.conf'
+        include '**/*.config'
+        include '**/*.xml'
+        include '**/*.recipes'
+        exclude '**/_CLIENT/**'
+		exclude '**/saves/**'
+		exclude '**/minetweaker.log/**'
+		exclude '**/BotaniaVars.dat/**'
+		exclude '**/options.txt/**'
+		exclude '**/asm/**'
+		exclude '**/logs/**'
+        filter(ReplaceTokens, tokens: project.properties.collectEntries { k, v -> [k, v ?: ''] })
+    }
+    into "$buildSources/server"
+
+    eachFile { details ->
+        details.path = details.path.replaceAll('_SERVER', '');
+    }
+    includeEmptyDirs = false
+}
+
+
+
+task compileClient(type: Copy) {
+    doFirst {
+        delete("$buildSources/client")
+    }
+    from('src') {
+        exclude '**/_SERVER/**'
+    }
+    from('src') {
+        include '**/*.properties'
+        include '**/*.txt'
+        include '**/*.json'
+        include '**/*.cfg'
+        include '**/*.conf'
+        include '**/*.config'
+        include '**/*.xml'
+        include '**/*.recipes'
+		exclude '**/_SERVER/**'
+        filter(ReplaceTokens, tokens: project.properties.collectEntries { k, v -> [k, v ?: ''] })
+    }
+    into "$buildSources/client"
+
+    eachFile { details ->
+        details.path = details.path.replaceAll('_CLIENT', '');
+    }
+    includeEmptyDirs = false
+}
+
+
+task compileCurse(type: Copy) {
+    doFirst {
+        delete("$buildSources/curse/override")
+    }
+    from('src') {
+        exclude '**/_SERVER/**'
+    }
+    from('src') {
+        include '**/*.properties'
+        include '**/*.txt'
+        include '**/*.json'
+        include '**/*.cfg'
+        include '**/*.conf'
+        include '**/*.config'
+        include '**/*.xml'
+        include '**/*.recipes'
+		exclude '**/_SERVER/**'
+		exclude '**/_CURSE/**'
+        filter(ReplaceTokens, tokens: project.properties.collectEntries { k, v -> [k, v ?: ''] })
+    }
+    into "$buildSources/curse/override"
+
+    eachFile { details ->
+        details.path = details.path.replaceAll('_CLIENT', '');
+    }
+    includeEmptyDirs = false
+}
+
+
+
+task compileCurse1(type: Copy) {
+    from('Misc') {
+		include '**/curse/**'
+    include '**/curse/override/**'
+		exclude '**/MultiMC/**'
+    }
+
+    into "$buildSources"
+}
+
+
+
+
+
+task compileMultiMC(type: Copy) {
+    doFirst {
+        delete("$buildSources/MultiMC/minecraft")
+    }
+    from('src') {
+        exclude '**/_SERVER/**'
+    }
+    from('src') {
+        include '**/*.properties'
+        include '**/*.txt'
+        include '**/*.json'
+        include '**/*.cfg'
+        include '**/*.conf'
+        include '**/*.config'
+        include '**/*.xml'
+        include '**/*.recipes'
+		exclude '**/_SERVER/**'
+        filter(ReplaceTokens, tokens: project.properties.collectEntries { k, v -> [k, v ?: ''] })
+    }
+    into "$buildSources/MultiMC/minecraft"
+
+    eachFile { details ->
+        details.path = details.path.replaceAll('_CURSECLIENT', '');
+    }
+    includeEmptyDirs = false
+}
+
+
+	task compileMultiMC1(type: Copy) {
+    from('Misc') {
+		include '**/MultiMC/patches/**'
+		include '**/MultiMC/.packignore.**'
+		include '**/MultiMC/instance.**'
+    }
+    into "$buildSources"
+}
+
+
+
+
+
+
+task buildServer(type: Zip, dependsOn: ['compileServer']) {
+    from "$buildSources/server"
+    baseName = "$buildDir/${project.name}_${project.version}_Server"
+}
+
+task buildClient(type: Zip, dependsOn: ['compileClient']) {
+    from "$buildSources/client"
+    baseName = "$buildDir/${project.name}_${project.version}_Client"
+}
+
+task buildCurse(type: Zip,  dependsOn: ['compileCurse','compileCurse1']) {
+    from "$buildSources/curse"
+	baseName = "$buildDir/${project.name}_CURSECLIENT"
+}
+
+task buildMultiMC(type: Zip,  dependsOn: ['compileMultiMC','compileMultiMC1']) {
+    from "$buildSources/MultiMC"
+	baseName = "$buildDir/${project.name}_MultiMCCLIENT"
+}
