@@ -5,7 +5,7 @@ fov:0.0
 gamma:1.0
 saturation:0.0
 renderDistance:12
-guiScale:0
+guiScale:2
 particles:0
 bobView:true
 anaglyph3d:false
@@ -88,6 +88,7 @@ key_key.am2.shape_groups:46
 key_key.am2.dark_vision:38
 key_key.am2.spellbooknext:45
 key_key.am2.spellbookprev:44
+key_quark.keybind.toggleAutojump:48
 key_quark.emote.wave:0
 key_quark.emote.salute:0
 key_quark.emote.yes:0
@@ -98,7 +99,6 @@ key_quark.emote.point:0
 key_quark.emote.shrug:0
 key_quark.emote.facepalm:0
 key_quark.emote.headbang:0
-key_quark.keybind.toggleAutojump:48
 key_BloodMagic.keybind.open_holding:35
 key_BloodMagic.keybind.cycle_holding_pos:13:SHIFT
 key_BloodMagic.keybind.cycle_holding_neg:12:SHIFT
@@ -109,21 +109,6 @@ key_key.davincis.brake:46
 key_key.davincis.align:13
 key_key.davincis.decompile:43
 key_key.davincis.shipinv:37
-key_enderio.keybind.glidertoggle:34
-key_enderio.keybind.soundlocator:38
-key_enderio.keybind.nightvision:25
-key_enderio.keybind.gogglesofrevealing:0
-key_enderio.keybind.stepassist:0
-key_enderio.keybind.speed:0
-key_enderio.keybind.jump:0
-key_enderio.keybind.top:0
-key_enderio.keybind.yetawrenchmode:21
-key_enderio.keybind.magnet:0
-key_enderio.keybind.fovreset:0
-key_enderio.keybind.fovplus:0
-key_enderio.keybind.fovminus:0
-key_enderio.keybind.fovplusfast:0
-key_enderio.keybind.fovminusfast:0
 key_key.rscircuits:monocle:44
 key_key.xtones.scroll:42
 key_key.jei.toggleOverlay:24:CONTROL
@@ -178,7 +163,7 @@ key_keybind.railcraft.loco.faster:52:ALT
 key_keybind.railcraft.loco.slower:51:ALT
 key_keybind.railcraft.loco.mode:50:ALT
 key_keybind.railcraft.loco.whistle:49:ALT
-soundCategory_master:0.0
+soundCategory_master:1.0
 soundCategory_music:1.0
 soundCategory_record:1.0
 soundCategory_weather:1.0
