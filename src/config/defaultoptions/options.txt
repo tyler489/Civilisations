@@ -23,7 +23,7 @@ chatVisibility:0
 chatColors:true
 chatLinks:true
 chatLinksPrompt:true
-chatOpacity:1.0
+chatOpacity:0.95
 snooperEnabled:true
 fullscreen:false
 enableVsync:false
@@ -40,15 +40,15 @@ chatHeightUnfocused:0.44366196
 chatScale:1.0
 chatWidth:1.0
 showInventoryAchievementHint:false
-mipmapLevels:4
-forceUnicodeFont:false
+mipmapLevels:0
+forceUnicodeFont:true
 reducedDebugInfo:false
 useNativeTransport:true
 entityShadows:false
 mainHand:right
 attackIndicator:1
 showSubtitles:false
-realmsNotifications:true
+realmsNotifications:false
 enableWeakAttacks:false
 autoJump:false
 soundCategory_master:1.0
